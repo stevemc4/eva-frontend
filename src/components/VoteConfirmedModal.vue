@@ -19,7 +19,9 @@ export default {
     methods: {
         done(){
             this.$modal.hide('confirmed')
-            this.$root.$emit('voted')
+            setTimeout(() => {
+                this.$root.$emit('voted')
+            }, 250)
         }
     }
 }
