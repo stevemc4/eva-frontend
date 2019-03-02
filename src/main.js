@@ -3,9 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VModal from 'vue-js-modal'
 
 import axios from 'axios'
 
+Vue.use(VModal)
 
 Vue.prototype.$axios = axios.create({
   baseURL: 'http://' + location.hostname + ':4200/api'
