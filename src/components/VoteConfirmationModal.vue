@@ -8,7 +8,7 @@
             Apakah Anda yakin ingin memilih <span v-pre>{{name}}</span>?
         </span>
         <div class="flex justify-end mt-4">
-            <button class="mr-2 p-4 focus:outline-none font-bold text-grey-darkest hover:text-black" @click="$modal.hide('detail')">Kembali ke Daftar Kandidat</button>
+            <button class="mr-2 p-4 focus:outline-none font-bold text-grey-darkest hover:text-black" @click="$modal.hide('confirm')">Kembali ke Daftar Kandidat</button>
             <button class="rounded border border-blue-dark bg-blue-dark text-white font-bold ml-2 p-4 focus:outline-none hover:bg-blue-darker hover:border-blue-darker">Saya Yakin!</button>
         </div>
       </div>
