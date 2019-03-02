@@ -9,7 +9,7 @@
         </span>
         <div class="flex justify-end mt-4">
             <button class="mr-2 p-4 focus:outline-none font-bold text-grey-darkest hover:text-black" @click="$modal.hide('confirm')">Kembali ke Daftar Kandidat</button>
-            <button class="rounded border border-blue-dark bg-blue-dark text-white font-bold ml-2 p-4 focus:outline-none hover:bg-blue-darker hover:border-blue-darker">Saya Yakin!</button>
+            <button class="rounded border border-blue-dark bg-blue-dark text-white font-bold ml-2 p-4 focus:outline-none hover:bg-blue-darker hover:border-blue-darker" @click="vote()">Saya Yakin!</button>
         </div>
       </div>
     </modal>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-
+    methods: {
+        vote(){
+            this.$modal.hide('confirm')
+            this.$modal.show('confirmed')
+        }
+    }
 }
 </script>
 
