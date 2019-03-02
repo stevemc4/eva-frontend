@@ -12,7 +12,7 @@
                     </div>
                     <div class="flex">
                         <button class="rounded-bl-lg border border-grey border-r-0 w-1/2 p-4 focus:outline-none hover:bg-grey-lighter" @click="$modal.show('detail')">Lihat Detail</button>
-                        <button class="rounded-br-lg border bg-blue-dark text-white border-blue-dark font-bold border-l-0 w-1/2 p-4 focus:outline-none hover:bg-blue-darker">Pilih</button>
+                        <button class="rounded-br-lg border bg-blue-dark text-white border-blue-dark font-bold border-l-0 w-1/2 p-4 focus:outline-none hover:bg-blue-darker" @click="$modal.show('confirm')">Pilih</button>
                     </div>
                 </div>
             </div>
