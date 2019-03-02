@@ -18,6 +18,7 @@ export default {
     created()
     {
         this.$root.$on('leaveLogin', () => this.show = true)
+        this.$root.$on('voted', () => this.logout())
     },
     methods: {
         logout(){
