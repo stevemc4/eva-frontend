@@ -18,7 +18,7 @@
         <p v-pre>{{mission}}</p>
         <div class="flex justify-end mt-4">
             <button class="mr-2 p-4 focus:outline-none font-bold text-grey-darkest hover:text-black" @click="$modal.hide('detail')">Tutup</button>
-            <button class="rounded border border-blue-dark bg-blue-dark text-white font-bold ml-2 p-4 focus:outline-none hover:bg-blue-darker hover:border-blue-darker">Pilih <span v-pre>{{name}}</span></button>
+            <button class="rounded border border-blue-dark bg-blue-dark text-white font-bold ml-2 p-4 focus:outline-none hover:bg-blue-darker hover:border-blue-darker" @click="vote">Pilih <span v-pre>{{name}}</span></button>
         </div>
       </div>
     </modal>
@@ -26,7 +26,12 @@
 
 <script>
 export default {
-
+    methods: {
+        vote(){
+            this.$modal.hide('detail')
+            this.$modal.show('confirm')
+        }
+    }
 }
 </script>
 
