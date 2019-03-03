@@ -21,9 +21,15 @@ export default {
         this.$root.$on('voted', () => this.logout())
     },
     methods: {
-        logout(){
-            this.show = false
-            this.$router.push('/login?logout=true')
+        async logout(){
+            try{
+                let data = await this.$axios.get('/auth/logout')
+                this.show = false
+                this.$router.push('/login?logout=true')
+            }
+            catch(e){
+                
+            }
         }
     }
 }
