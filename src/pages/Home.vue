@@ -1,7 +1,10 @@
 <template>
     <div id="page" class="p-8" :class="{'mt-8 opacity-0': !show, 'mt-0 opacity-100': show}">
         <span class="block text-4xl">Selamat Datang, <span>{{voterData.name}}</span></span>
-        <h1 class="font-bold text-xl mt-4">Kandidat</h1>
+        <div class="flex mt-4">
+            <h1 class="font-bold text-xl flex-grow">Daftar Kandidat</h1>
+            <span class="">Scroll kebawah untuk melihat lebih banyak kandidat!</span>
+        </div>
         <div class="mt-4 -mx-4 flex flex-row flex-wrap">
             <div class="w-1/2 xl:w-1/3 p-4" :class="{'mt-8 opacity-0': !startShowingCandidates, 'mt-0 opacity-100': startShowingCandidates}" v-for="(item, index) in candidates" :style="`transition: margin-top 0.5s ease-in-out ${0.15*index}s, opacity 0.5s ease-in-out ${0.15*index}s`" :key="item.id">
                 <div class="flex flex-col">
