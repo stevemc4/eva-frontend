@@ -72,7 +72,10 @@ router.beforeEach(async (to, from, next) => {
       next()
     }
     catch(e){
-      next('/unauthorized')
+      if(to.name == 'Home')
+        next('/login')
+      else
+        next('/unauthorized')
     }
   }
   else
