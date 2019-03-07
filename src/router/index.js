@@ -21,7 +21,7 @@ var router = new Router({
       name: 'Home',
       component: Home,
       meta: {
-        title: 'Halaman Utama',
+        title: 'Daftar Kandidat',
         requireAuth: true
       }
     },
