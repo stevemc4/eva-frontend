@@ -49,13 +49,11 @@ export default {
         async getVoterData(){
             let data = await this.$axios.get('/voter/this')
             this.voterData = data.data
-            console.log('voter ok')
             return 1
         },
         async getCandidatesData(){
             let data = await this.$axios.get('/candidates')
             this.candidates = data.data
-            console.log('candidates ok')
             return 1
         }
     },
