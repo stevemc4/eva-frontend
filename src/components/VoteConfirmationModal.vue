@@ -18,17 +18,53 @@
 <script>
 export default {
     data(){
-        return{
+        return {
             data: {}
         }
     },
     methods: {
-        vote(){
-            this.$modal.hide('confirm')
-            this.$modal.show('confirmed')
+        async vote(){
+            let voterData = await this.$axios.get('/voter/this')
+            let rawSignatureData = JSON.stringify({
+                voter: voterData.data.id,
+                candidate: this.data.id
+            })
+            let encode = new TextEncoder()
+            let iv = new Uint8Array(16)
+            window.crypto.getRandomValues(iv)
+            let crypto = window.crypto.subtle
+            let key = await crypto.generateKey({
+                    name: 'AES-GCM',
+                    length: 256
+                },
+                true,
+                ['encrypt', 'decrypt']
+            )
+            let encrypted = await crypto.encrypt({
+                    name: 'AES-GCM',
+                    iv
+                },
+                key,
+                encode.encode(voterData)
+            )
+            encrypted = this.bufferToHex(encrypted)
+            let payload = {
+                signature: {
+                    cipher: encrypted,
+                    key: this.bufferToHex(iv)
+                }
+            }
+            console.log(payload)
+            // this.$modal.hide('confirm')
+            //this.$modal.show('confirmed')
         },
         setup(e){
             this.data = e.params
+        },
+        bufferToHex(buffer){
+            var s = '', h = '0123456789ABCDEF';
+            (new Uint8Array(buffer)).forEach((v) => { s += h[v >> 4] + h[v & 15]; });
+            return s;
         }
     }
 }
