@@ -1,11 +1,11 @@
 <template>
-    <modal name="confirm" :scrollable="true" :height="'auto'">
+    <modal name="confirm" :scrollable="true" :height="'auto'" @before-open="setup">
       <div class="p-4">
         <div class="flex items-center">
           <span class="block text-2xl flex-grow">Konfirmasi Pilihan</span>
         </div>
         <span class="block mt-4">
-            Apakah Anda yakin ingin memilih <span v-pre>{{name}}</span>?
+            Apakah Anda yakin ingin memilih <span>{{data.name}}</span>?
         </span>
         <div class="flex justify-end mt-4">
             <button class="mr-2 p-4 focus:outline-none font-bold text-grey-darkest hover:text-black" @click="$modal.hide('confirm')">Kembali ke Daftar Kandidat</button>
@@ -17,10 +17,18 @@
 
 <script>
 export default {
+    data(){
+        return{
+            data: {}
+        }
+    },
     methods: {
         vote(){
             this.$modal.hide('confirm')
             this.$modal.show('confirmed')
+        },
+        setup(e){
+            this.data = e.params
         }
     }
 }
