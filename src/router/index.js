@@ -61,6 +61,7 @@ var router = new Router({
 })
 
 router.beforeEach(async (to, from, next) => {
+  document.title = `${to.meta.title || 'Judul Default'} - Project EVA`
   if(to.meta.requireAuth == true){
     try{
       let request = axios.create({
