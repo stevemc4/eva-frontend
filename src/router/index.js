@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
+import Unauthorized from '@/pages/401'
 
 import Installer from '@/pages/InstallerRoot'
 import InstallerMain from '@/pages/installer/Index'
@@ -47,6 +48,14 @@ var router = new Router({
           component: InstallerDatabaseSetup
         }
       ]
+    },
+    {
+      path: '/unauthorized',
+      name: '401 Unauthorized',
+      component: Unauthorized,
+      meta: {
+        title: '401 Tidak Diizinkan'
+      }
     }
   ],
 })
@@ -54,10 +63,12 @@ var router = new Router({
 router.beforeEach(async (to, from, next) => {
   if(to.meta.requireAuth == true){
     try{
-      let data = await axios.get('localhost:4200/api/auth/check', {
+      let request = axios.create({
+        baseURL: 'http://' + location.hostname + ':4200/api',
         withCredentials: true
       })
-      console.log('asd')
+      let data = await request.get('auth/check')
+      next()
     }
     catch(e){
       next('/unauthorized')

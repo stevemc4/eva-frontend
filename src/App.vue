@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navigation v-if="$route.name != 'Login' && $route.path.indexOf('installer') == -1"/>
+    <navigation v-if="$route.name != 'Login' && $route.path.indexOf('installer') == -1 && $route.name != '401 Unauthorized'"/>
     <router-view/>
     <candidate-detail-modal/>
     <vote-confirmation-modal/>
