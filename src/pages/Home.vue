@@ -5,7 +5,7 @@
         <div class="mt-4 -mx-4 flex flex-row flex-wrap">
             <div class="w-1/2 xl:w-1/3 p-4" :class="{'mt-8 opacity-0': !startShowingCandidates, 'mt-0 opacity-100': startShowingCandidates}" v-for="(item, index) in candidates" :style="`transition: margin-top 0.5s ease-in-out ${0.15*index}s, opacity 0.5s ease-in-out ${0.15*index}s`" :key="item.id">
                 <div class="flex flex-col">
-                    <img class="bg-grey h-48 w-full h-full rounded-t-lg" style="object-fit: cover" :src="`${baseURL}${item.image}`">
+                    <img class="bg-grey h-48 w-full rounded-t-lg" style="object-fit: cover" :src="`${baseURL}${item.image}`">
                     <div class="border border-t-0 border-b-0 border-grey p-4">
                         <span class="block text-2xl font-bold text-black">{{item.name}}</span>
                         <span class="block text-lg mt-4 text-black">{{item.class.className}}</span>
