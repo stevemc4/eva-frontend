@@ -43,8 +43,7 @@ export default {
             }
             catch(e){
                 if(e.response.status == 401)
-                    this.unauthorized = true    
-                console.log(e.response)
+                    this.unauthorized = true
             }
         }
     },
