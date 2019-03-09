@@ -6,6 +6,7 @@ import axios from 'axios'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Unauthorized from '@/pages/401'
+import NotFound from '@/pages/404'
 
 import Installer from '@/pages/InstallerRoot'
 import InstallerMain from '@/pages/installer/Index'
@@ -55,6 +56,14 @@ var router = new Router({
       component: Unauthorized,
       meta: {
         title: '401 Tidak Diizinkan'
+      }
+    },
+    {
+      path: '/*',
+      name: '404 Not Found',
+      component: NotFound,
+      meta: {
+        title: '404 Tidak Ditemukan'
       }
     }
   ],
