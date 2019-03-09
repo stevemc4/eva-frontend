@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: 'Login'
+    name: 'Unauthorized'
 }
 </script>
 
