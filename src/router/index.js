@@ -71,6 +71,22 @@ var router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   document.title = `${to.meta.title || 'Judul Default'} - Project EVA`
+  if(to.name == 'Login'){
+    try{
+      let request = axios.create({
+        baseURL: 'http://' + location.hostname + ':4200/api',
+        withCredentials: true
+      })
+      let data = await request.get('auth/check')
+      if(data.data.payload.level == 0)
+        next('/dashboard')
+      else
+        next('/')
+    }
+    catch(e){
+      next()
+    }
+  }
   if(to.meta.requireAuth == true){
     try{
       let request = axios.create({
@@ -78,7 +94,13 @@ router.beforeEach(async (to, from, next) => {
         withCredentials: true
       })
       let data = await request.get('auth/check')
-      next()
+      if(to.meta.authLevel != undefined)
+        if(data.data.payload.level == to.meta.authLevel)
+          next()
+        else
+          next('/unauthorized')
+      else
+        next()
     }
     catch(e){
       if(to.name == 'Home')
