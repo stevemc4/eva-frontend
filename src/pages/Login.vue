@@ -38,7 +38,10 @@ export default {
                 let data = await this.$axios.post('/auth/login', body)
                 this.expanded = true
                 setTimeout(() => {
-                    this.$router.push('/')
+                    if(data.data.payload.level == 0)
+                        this.$router.push('/dashboard')
+                    else if (data.data.payload.level == 1)
+                        this.$router.push('/')
                 }, 300)
             }
             catch(e){
