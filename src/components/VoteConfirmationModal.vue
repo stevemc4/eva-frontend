@@ -29,6 +29,7 @@ export default {
                 voter: voterData.data.id,
                 candidate: this.data.id
             })
+            //console.log(rawSignatureData + '\0')
             let encode = new TextEncoder()
             let iv = new Uint8Array(16)
             window.crypto.getRandomValues(iv)
@@ -40,23 +41,27 @@ export default {
                 true,
                 ['encrypt', 'decrypt']
             )
+            
             let encrypted = await crypto.encrypt({
                     name: 'AES-GCM',
                     iv
                 },
                 key,
-                encode.encode(voterData)
+                encode.encode(rawSignatureData)
             )
             encrypted = this.bufferToHex(encrypted)
             let payload = {
                 signature: {
                     cipher: encrypted,
-                    key: this.bufferToHex(iv)
+                    iv: this.bufferToHex(iv),
+                    key: this.bufferToHex((await crypto.exportKey('raw', key))),
+                    dataLength: rawSignatureData.length
                 }
             }
             console.log(payload)
-            // this.$modal.hide('confirm')
-            //this.$modal.show('confirmed')
+            await this.$axios.post('/votes', payload)
+            this.$modal.hide('confirm')
+            this.$modal.show('confirmed')
         },
         setup(e){
             this.data = e.params
