@@ -12,6 +12,8 @@ import Installer from '@/pages/InstallerRoot'
 import InstallerMain from '@/pages/installer/Index'
 import InstallerDatabaseSetup from '@/pages/installer/DatabaseSetup'
 
+import DashboardHome from '@/pages/dashboard/Home'
+
 Vue.use(Router)
 
 var router = new Router({
@@ -51,6 +53,15 @@ var router = new Router({
       ]
     },
     {
+      path: '/dashboard',
+      name: 'DashboardHome',
+      component: DashboardHome,
+      meta: {
+        requireAuth: true,
+        authLevel: 0
+      }
+    },
+    {
       path: '/unauthorized',
       name: '401 Unauthorized',
       component: Unauthorized,
@@ -71,29 +82,19 @@ var router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   document.title = `${to.meta.title || 'Judul Default'} - Project EVA`
-  if(to.name == 'Login'){
-    try{
-      let request = axios.create({
-        baseURL: 'http://' + location.hostname + ':4200/api',
-        withCredentials: true
-      })
-      let data = await request.get('auth/check')
+  try{
+    let request = axios.create({
+      baseURL: 'http://' + location.hostname + ':4200/api',
+      withCredentials: true
+    })
+    let data = await request.get('auth/check')
+    if(to.name == 'Login'){
       if(data.data.payload.level == 0)
         next('/dashboard')
       else
         next('/')
     }
-    catch(e){
-      next()
-    }
-  }
-  if(to.meta.requireAuth == true){
-    try{
-      let request = axios.create({
-        baseURL: 'http://' + location.hostname + ':4200/api',
-        withCredentials: true
-      })
-      let data = await request.get('auth/check')
+    if(to.meta.requireAuth == true){
       if(to.meta.authLevel != undefined)
         if(data.data.payload.level == to.meta.authLevel)
           next()
@@ -102,15 +103,24 @@ router.beforeEach(async (to, from, next) => {
       else
         next()
     }
-    catch(e){
+    if(to.path == '/'){
+      if(data.data.payload.level == 0)
+        next('/dashboard')
+      else
+        next()
+    }
+    next()
+  }
+  catch(e){
+    if(to.meta.requireAuth == true){
       if(to.name == 'Home')
         next('/login')
       else
         next('/unauthorized')
     }
+    else
+      next()
   }
-  else
-    next()
 })
 
 export default router
