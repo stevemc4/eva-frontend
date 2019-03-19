@@ -6,13 +6,13 @@
                     <router-link title="Sekilas" class="p-4 no-underline text-grey-darkest" :to="'/dashboard'" v-tippy="{placement: 'right'}">
                         <monitor-icon/>
                     </router-link>
-                    <router-link title="Kandidat" class="p-4 no-underline text-grey-darkest" :to="'/candidates'" v-tippy="{placement: 'right'}">
+                    <router-link title="Kandidat" class="p-4 no-underline text-grey-darkest" :to="'/dashboard/candidates'" v-tippy="{placement: 'right'}">
                         <user-check-icon/>
                     </router-link>
-                    <router-link title="Pemilih" class="p-4 no-underline text-grey-darkest" :to="'/voters'" v-tippy="{placement: 'right'}">
+                    <router-link title="Pemilih" class="p-4 no-underline text-grey-darkest" :to="'/dashboard/voters'" v-tippy="{placement: 'right'}">
                         <user-icon/>
                     </router-link>
-                    <router-link title="Hasil" class="p-4 no-underline text-grey-darkest" :to="'/votes'" v-tippy="{placement: 'right'}">
+                    <router-link title="Hasil" class="p-4 no-underline text-grey-darkest" :to="'/dashboard/votes'" v-tippy="{placement: 'right'}">
                         <check-square-icon/>
                     </router-link>
                 </div>
