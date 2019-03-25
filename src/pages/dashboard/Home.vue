@@ -28,11 +28,6 @@ export default {
         // this.baseURL = `http://${window.location.hostname}:4200/static/img/candidates/`
         // await this.getVoterData()
         // await this.getCandidatesData()
-        this.$root.$emit('leaveLogin')
-        this.show = true
-        setTimeout(()=>{
-            this.startShowingCandidates = true
-        }, 10)
     },
     methods: {
         async getVoterData(){

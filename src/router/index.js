@@ -12,7 +12,9 @@ import Installer from '@/pages/InstallerRoot'
 import InstallerMain from '@/pages/installer/Index'
 import InstallerDatabaseSetup from '@/pages/installer/DatabaseSetup'
 
+import DashboardLayout from '@/components/DashboardLayout'
 import DashboardHome from '@/pages/dashboard/Home'
+import DashboardCandidates from '@/pages/dashboard/Candidates'
 
 Vue.use(Router)
 
@@ -54,8 +56,20 @@ var router = new Router({
     },
     {
       path: '/dashboard',
-      name: 'DashboardHome',
-      component: DashboardHome,
+      name: 'DashboardLayout',
+      component: DashboardLayout,
+      children: [
+        {
+          path: '/',
+          name: 'DashboardHome',
+          component: DashboardHome
+        },
+        {
+          path: 'candidates',
+          name: 'DashboardCandidates',
+          component: DashboardCandidates,
+        },
+      ],
       meta: {
         requireAuth: true,
         authLevel: 0

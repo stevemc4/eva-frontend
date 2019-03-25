@@ -19,7 +19,7 @@
             </div>
             <div class="animate flex-grow overflow-y-auto">
 	            <navigation/>
-				<slot/>
+				<router-view/>
 			</div>
 	   </div>
 	</div>
@@ -37,10 +37,12 @@ export default {
 			show: false
 		}
 	},
-	created()
-	{
-		this.$root.$on('leaveLogin', () => this.show = true)
+	created(){
 		this.$root.$on('reset', () => this.show = false)
+	},
+	mounted(){
+		this.$root.$emit('leaveLogin')
+		this.show = true
 	}
 }
 </script>
