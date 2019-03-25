@@ -62,18 +62,22 @@ var router = new Router({
         {
           path: '/',
           name: 'DashboardHome',
-          component: DashboardHome
+          component: DashboardHome,
+          meta: {
+            requireAuth: true,
+            authLevel: 0
+          }
         },
         {
           path: 'candidates',
           name: 'DashboardCandidates',
           component: DashboardCandidates,
+          meta: {
+            requireAuth: true,
+            authLevel: 0
+          }
         },
-      ],
-      meta: {
-        requireAuth: true,
-        authLevel: 0
-      }
+      ]
     },
     {
       path: '/unauthorized',
