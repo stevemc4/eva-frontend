@@ -16,28 +16,14 @@ export default {
     data(){
         return{
             show: false,
-            voterData: {},
-            candidates: [],
-            startShowingCandidates: false,
             baseURL: ''
         }
     },
     async mounted(){
-        // this.baseURL = `http://${window.location.hostname}:4200/static/img/candidates/`
-        // await this.getVoterData()
-        // await this.getCandidatesData()
+        setTimeout(() => this.show = true, 10)
     },
     methods: {
-        async getVoterData(){
-            let data = await this.$axios.get('/voter/this')
-            this.voterData = data.data
-            return 1
-        },
-        async getCandidatesData(){
-            let data = await this.$axios.get('/candidates')
-            this.candidates = data.data
-            return 1
-        }
+        
     },
     beforeRouteLeave(to, from, next)
     {
@@ -48,7 +34,7 @@ export default {
             }, 100)
         }
         else next()
-    }
+    },
 }
 </script>
 
