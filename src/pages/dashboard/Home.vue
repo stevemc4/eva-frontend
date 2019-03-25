@@ -1,12 +1,10 @@
 <template>
-    <layout>
         <div id="page" class="p-8" :class="{'mt-8 opacity-0': !show, 'mt-0 opacity-100': show}">
             <span class="block text-4xl">Sekilas</span>
             <div class="flex mt-4">
                 
             </div>
         </div>
-    </layout>
 </template>
 
 <script>
