@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen flex flex-col">
 	    <div class="flex flex-grow">
-		    <div class="w-16 h-full border-r-2 animate flex items-center justify-center" :class="{'-ml-16': !show, 'ml-0': show}">
+		    <div class="w-16 h-full border-r-2 animate flex items-center justify-center flex-no-shrink" :class="{'-ml-16': !show, 'ml-0': show}">
                 <div class="flex flex-col items-center">
                     <router-link title="Sekilas" class="p-4 no-underline text-grey-darkest" :to="'/dashboard'" v-tippy="{placement: 'right'}">
                         <monitor-icon/>
