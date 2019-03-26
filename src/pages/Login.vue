@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 
     #loginBox{
         transition: width ease-in-out 0.25s, height ease-in-out 0.25s;
